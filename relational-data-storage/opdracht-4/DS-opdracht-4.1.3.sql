@@ -8,3 +8,5 @@ INNER JOIN mhl_rubrieken as r
 ON pivot.mhl_rubriek_view_ID = r.id
 WHERE c.name LIKE "Amsterdam%" AND (r.id = 235 OR r.parent = 235)
 ORDER BY r.name ASC, s.name ASC;
+
+-- //235 niet noemen?
