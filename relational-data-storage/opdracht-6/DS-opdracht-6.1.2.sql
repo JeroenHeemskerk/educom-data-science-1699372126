@@ -1,43 +1,3 @@
-SELECT com.name
-FROM mhl_communes AS com
-
-
-Selecteer alle NEDERLANDSE gemeentes
-
-country_id = 151
-of mhl_countries.name = "Nederland"
-
-mhl_districts.country_ID = 151
-
-
-
-
-SELECT gemeente, leverancier, total_hitcount, average_hitcount
-
-FROM (
-    SELECT com.id, s.name, 
-
-    FROM mhl_suppliers AS s
-    JOIN mhl_cities AS c ON
-    s.city_ID = c.id
-    JOIN mhl_communes AS com
-    ON com.id = c.commune_ID
-    JOIN mhl_districts AS d
-    ON d.id = com.district_ID
-    JOIN mhl_countries AS country
-    ON country.id = d.country_ID
-    
-    WHERE d.country_ID = (
-        SELECT id
-        FROM mhl_countries AS country
-        WHERE country.name = "Nederland")
-
-    mhl_hitcount
-)
-
-
-
-
 SELECT a.gemeente, b.leverancier, b.total_hitcount, a.average_hitcount
 FROM (
 
@@ -56,7 +16,6 @@ FROM (
 
         GROUP BY g.id, l.name 
     ) AS b
-
 
 INNER JOIN (
     SELECT g.id, AVG(h.hitcount) AS average_hitcount, g.name AS gemeente
